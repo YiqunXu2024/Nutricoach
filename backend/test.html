@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>NutriCoach API 测试</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .container { max-width: 800px; margin: 0 auto; }
+        textarea { width: 100%; height: 100px; margin: 10px 0; }
+        button { padding: 10px 20px; background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 5px; }
+        .error { background: #f8d7da; color: #721c24; }
+        .success { background: #d4edda; color: #155724; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>NutriCoach API 测试</h1>
+        
+        <div>
+            <label for="description">食物描述：</label>
+            <textarea id="description" placeholder="例如：一个苹果和一杯牛奶">一个苹果和一杯牛奶</textarea>
+        </div>
+        
+        <button onclick="analyzeFood()">分析营养</button>
+        
+        <div id="result" class="result" style="display: none;"></div>
+    </div>
+
+    <script>
+        async function analyzeFood() {
+            const description = document.getElementById('description').value;
+            const resultDiv = document.getElementById('result');
+            
+            if (!description.trim()) {
+                alert('请输入食物描述');
+                return;
+            }
+            
+            try {
+                const response = await fetch('http://127.0.0.1:8000/analyze_food', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ description: description })
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'result success';
+                    resultDiv.innerHTML = `
+                        <h3>营养分析结果：</h3>
+                        <p><strong>热量：</strong>${data.calories} 千卡</p>
+                        <p><strong>蛋白质：</strong>${data.protein} 克</p>
+                        <p><strong>脂肪：</strong>${data.fat} 克</p>
+                        <p><strong>碳水化合物：</strong>${data.carbs} 克</p>
+                        <p><strong>膳食纤维：</strong>${data.fiber} 克</p>
+                        <p><strong>钠：</strong>${data.sodium} 毫克</p>
+                        <h4>详细信息：</h4>
+                        <pre>${JSON.stringify(data.details, null, 2)}</pre>
+                    `;
+                } else {
+                    resultDiv.className = 'result error';
+                    resultDiv.innerHTML = `<h3>错误：</h3><p>${data.detail}</p>`;
+                }
+                
+                resultDiv.style.display = 'block';
+            } catch (error) {
+                resultDiv.className = 'result error';
+                resultDiv.innerHTML = `<h3>连接错误：</h3><p>${error.message}</p>`;
+                resultDiv.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html> 

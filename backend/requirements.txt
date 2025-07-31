@@ -1,0 +1,12 @@
+fastapi
+pydantic
+openai
+requests
+uvicorn
+sqlalchemy
+aiosqlite
+asyncpg
+databases
+greenlet
+python-jose[cryptography]
+passlib[bcrypt]
