@@ -1,10 +1,10 @@
 # NutriCoach - AI-Powered Nutrition Tracking Application
 
-## 📱 Project Overview
+##  Project Overview
 
 NutriCoach is an AI-powered mobile nutrition tracking application that helps users obtain detailed nutritional analysis and personalized dietary recommendations through natural language food descriptions.
 
-## ✨ Key Features
+##  Key Features
 
 - **Intelligent Nutrition Analysis**: Uses AI to analyze user-inputted food descriptions and provides detailed nutritional information
 - **Personalized Recommendations**: Offers customized nutrition advice based on user health profiles and dietary records
@@ -12,7 +12,7 @@ NutriCoach is an AI-powered mobile nutrition tracking application that helps use
 - **User Profile Management**: Records health information including height, weight, goals, allergies, and more
 - **Daily Nutrition Summary**: View daily nutritional intake and goal completion progress
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 ### Backend
 - **FastAPI**: High-performance Python web framework
@@ -27,7 +27,7 @@ NutriCoach is an AI-powered mobile nutrition tracking application that helps use
 - **HTTP**: Network requests
 - **Shared Preferences**: Local data storage
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 NutriCoach/
@@ -45,7 +45,7 @@ NutriCoach/
 └── README.md              # Project documentation
 ```
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Backend Setup
 
@@ -78,20 +78,20 @@ flutter pub get
 flutter run
 ```
 
-## 📋 Requirements
+##  Requirements
 
 - Python 3.8+
 - Flutter 3.0+
 - OpenAI API Key (or alternative AI backend)
 
-## 🔧 Configuration
+##  Configuration
 
 Configure in `backend/main.py`:
 - OpenAI API Key
 - Database connection
 - AI model selection (OpenAI/Ollama/HuggingFace)
 
-## 📱 Usage Instructions
+##  Usage Instructions
 
 1. **Register/Login**: Create an account or login to existing account
 2. **Complete Profile**: Fill in health information such as height, weight, goals, etc.
@@ -99,7 +99,7 @@ Configure in `backend/main.py`:
 4. **View Recommendations**: Get dietary advice based on personal circumstances
 5. **Historical Review**: View historical meal records and nutrition trends
 
-## 💡 Key Innovations
+##  Key Innovations
 
 - **Natural Language Processing**: Supports flexible food descriptions in multiple languages
 - **Multi-AI Backend Support**: Compatible with OpenAI, Ollama, and HuggingFace models
@@ -107,22 +107,22 @@ Configure in `backend/main.py`:
 - **Real-time Nutrition Analysis**: Instant processing and feedback for user inputs
 - **Cross-platform Compatibility**: Runs on iOS and Android devices
 
-## 🧪 Research Validation
+##  Research Validation
 
 This application has been evaluated through user studies demonstrating:
 - **35-50% improvement** in food logging efficiency compared to traditional apps
 - **High user satisfaction** with natural language input interface
 - **Effective personalization** through AI-driven recommendations
 
-## 🤝 Contributing
+##  Contributing
 
 This is an academic research project. Suggestions and feedback are welcome for improving the system.
 
-## 📄 License
+##  License
 
 This project is developed for academic research purposes only.
 
-## 📚 Research Publication
+##  Research Publication
 
 This work contributes to research in:
 - Human-Computer Interaction in Health Applications
