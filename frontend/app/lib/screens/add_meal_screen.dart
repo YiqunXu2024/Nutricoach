@@ -37,7 +37,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
                 controller: _mealDescriptionController,
                 maxLines: 4,
                 decoration: InputDecoration(
-                  hintText: 'Recommended format: [Date] [Meal] [Food details]\nExample: 2025-07-23 breakfast: 2 boiled eggs, 1 slice of whole wheat bread, 1 cup of milk',
+                  hintText: 'Example: 2 boiled eggs, 1 slice of whole wheat bread, 1 cup of milk for breakfast',
                   border: OutlineInputBorder(),
                   filled: true,
                   fillColor: Colors.grey[100],
@@ -155,7 +155,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
   void _analyzeMeal() async {
     if (_mealDescriptionController.text.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('请输入食物描述')),
+        SnackBar(content: Text('Please enter food description')),
       );
       return;
     }
@@ -175,7 +175,7 @@ class _AddMealScreenState extends State<AddMealScreen> {
 
     if (result == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('AI分析失败，请重试')),
+        SnackBar(content: Text('AI analysis failed, please try again')),
       );
     } else {
       // AI分析成功后，自动生成针对本餐的建议

@@ -11,17 +11,17 @@ import datetime
 import hashlib
 
 async def init_models():
-    """初始化数据库表"""
+    """Initialize database tables"""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
-    print("数据库表创建成功！")
+    print("Database tables created successfully!")
 
 async def create_test_data():
-    """创建测试数据"""
+    """Create test data"""
     from db.db import AsyncSessionLocal
     
     async with AsyncSessionLocal() as session:
-        # 创建多个测试用户
+        # create multiple test users
         test_users = [
             User(username="test_user", email="test@example.com", password_hash=hashlib.sha256("test123".encode()).hexdigest()),
             User(username="user2", email="user2@example.com", password_hash=hashlib.sha256("test123".encode()).hexdigest()),
@@ -34,9 +34,9 @@ async def create_test_data():
         
         for user in test_users:
             await session.refresh(user)
-            print(f"测试用户创建成功！ID: {user.id}, 用户名: {user.username}")
+            print(f"Test user created successfully! ID: {user.id}, username: {user.username}")
         
-        # 创建用户健康档案
+        # create user health profile
         test_profiles = [
             UserProfile(user_id=1, height=170, weight=65, target_weight=60, is_vegetarian=False, allergies="peanut", chronic_diseases="hypertension", age=30, gender="male"),
             UserProfile(user_id=2, height=160, weight=55, target_weight=50, is_vegetarian=True, allergies="", chronic_diseases="", age=28, gender="female"),
@@ -45,13 +45,13 @@ async def create_test_data():
         for profile in test_profiles:
             session.add(profile)
         await session.commit()
-        print(f"测试用户健康档案创建成功！共 {len(test_profiles)} 条记录")
+        print(f"Test user health profile created successfully! Total {len(test_profiles)} records")
         
-        # 创建一些测试餐食记录
+        # create some test meal records
         test_meals = [
             Meal(
                 user_id=1,
-                input_text="今天中午吃了一个鸡肉三明治",
+                input_text="had a chicken sandwich for lunch today",
                 calories=350.0,
                 protein=25.0,
                 fat=12.0,
@@ -79,7 +79,7 @@ async def create_test_data():
             ),
             Meal(
                 user_id=2,
-                input_text="早饭吃了一些面包就出门了",
+                input_text="had some bread for breakfast and went out",
                 calories=200.0,
                 protein=6.0,
                 fat=3.0,
@@ -96,9 +96,9 @@ async def create_test_data():
         for meal in test_meals:
             session.add(meal)
         await session.commit()
-        print(f"测试餐食记录创建成功！共 {len(test_meals)} 条记录")
+        print(f"Test meal records created successfully! Total {len(test_meals)} records")
         
-        # 创建今日汇总记录
+        # create today's summary record
         today = datetime.date.today()
         daily_summaries = [
             DailySummary(
@@ -126,7 +126,7 @@ async def create_test_data():
         for summary in daily_summaries:
             session.add(summary)
         await session.commit()
-        print(f"今日汇总记录创建成功！")
+        print(f"Today's summary record created successfully!")
 
 async def show_database_info():
     """显示数据库信息"""
@@ -135,17 +135,17 @@ async def show_database_info():
     async with AsyncSessionLocal() as session:
         # 统计各表记录数
         tables = [User, UserProfile, Meal, DailySummary]
-        table_names = ["用户", "健康档案", "餐食记录", "每日汇总"]
+        table_names = ["user", "health profile", "meal record", "daily summary"]
         
-        print("\n数据库统计信息:")
+        print("\ndatabase statistics:")
         for table, name in zip(tables, table_names):
             result = await session.execute(select(table))
             count = len(result.scalars().all())
-            print(f"  {name}表: {count} 条记录")
+            print(f"  {name} table: {count} records")
 
 if __name__ == "__main__":
-    print("开始初始化数据库...")
+    print("start initializing database...")
     asyncio.run(init_models())
     asyncio.run(create_test_data())
     asyncio.run(show_database_info())
-    print("\n数据库初始化完成！") 
+    print("\ndatabase initialization completed!") 

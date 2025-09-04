@@ -121,10 +121,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         _emailController.text,
                         _passwordController.text,
                       );
-                      print(response.body); // 可用于调试
+                      print(response.body); 
 
                       if (response.statusCode == 200 || response.statusCode == 201) {
-                        // 注册成功后，需要先登录获取token
+                        // after register, login to get token
                         final loginResponse = await login(
                           _usernameController.text,
                           _passwordController.text,
@@ -133,10 +133,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         if (loginResponse.statusCode == 200) {
                           final data = jsonDecode(loginResponse.body);
                           if (data['access_token'] != null) {
-                            // 保存token
+                            // save token
                             final prefs = await SharedPreferences.getInstance();
                             await prefs.setString('jwt_token', data['access_token']);
-                            // 注册成功并登录
+                            // register success and login
                             Navigator.pushReplacementNamed(context, '/home');
                           } else {
                             _showError('Registration successful but login failed');
@@ -145,7 +145,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           _showError('Registration successful but login failed');
                         }
                       } else {
-                        // 注册失败，弹窗提示
+                        // register failed, show dialog
                         showDialog(
                           context: context,
                           builder: (context) => AlertDialog(

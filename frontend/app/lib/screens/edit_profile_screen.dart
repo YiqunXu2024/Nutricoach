@@ -72,7 +72,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                       'age': age,
                       'gender': gender,
                     };
-                    await updateProfile(data); // 你需要实现此API调用
+                    await updateProfile(data); 
                     Navigator.pop(context, true);
                   }
                 },

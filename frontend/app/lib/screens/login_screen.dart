@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
       if (response.statusCode == 200) {
         final data = jsonDecode(response.body);
         if (data['access_token'] != null) {
-          // 保存token
+          // save token
           final prefs = await SharedPreferences.getInstance();
           await prefs.setString('jwt_token', data['access_token']);
 

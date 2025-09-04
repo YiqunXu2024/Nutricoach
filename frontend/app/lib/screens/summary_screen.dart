@@ -13,7 +13,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
   bool isLoading = true;
   bool isAdviceLoading = false;
 
-  // 默认NHS推荐值
+  // default NHS recommended values
   static const double NHS_CALORIES = 2000;
   static const double NHS_PROTEIN = 65;
   static const double NHS_FAT = 70;
@@ -23,9 +23,9 @@ class _SummaryScreenState extends State<SummaryScreen> {
 
   double getGoal(String key) {
     if (userProfile != null) {
-      // 可根据profile个性化目标（这里只做简单示例，可扩展）
+      // personalized goal based on profile (here is a simple example, can be extended)
       if (key == 'calories' && userProfile!["target_weight"] != null && userProfile!["height"] != null && userProfile!["age"] != null && userProfile!["gender"] != null) {
-        // Mifflin-St Jeor公式估算基础代谢率
+        // Mifflin-St Jeor formula to estimate basal metabolic rate
         double weight = userProfile!["target_weight"] ?? userProfile!["weight"] ?? 65;
         double height = userProfile!["height"] ?? 170;
         int age = userProfile!["age"] ?? 30;
@@ -33,10 +33,10 @@ class _SummaryScreenState extends State<SummaryScreen> {
         double bmr = gender == 'female'
             ? 10 * weight + 6.25 * height - 5 * age - 161
             : 10 * weight + 6.25 * height - 5 * age + 5;
-        // 假设轻度活动，TDEE约BMR*1.375
+        // assume moderate activity, TDEE is about BMR*1.375
         return bmr * 1.375;
       }
-      // 其他指标可根据profile扩展
+      // other indicators can be extended based on profile
     }
     switch (key) {
       case 'calories': return NHS_CALORIES;
@@ -92,7 +92,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        // 今日总览卡片
+                        // today's summary card
                         Card(
                           child: Padding(
                             padding: EdgeInsets.all(16.0),
@@ -129,7 +129,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        // 进度条
+                        // progress bar
                         Card(
                           child: Padding(
                             padding: EdgeInsets.all(16.0),
@@ -168,7 +168,7 @@ class _SummaryScreenState extends State<SummaryScreen> {
                           ),
                         ),
                         SizedBox(height: 20),
-                        // 建议
+                        // advice
                         Card(
                           child: Padding(
                             padding: EdgeInsets.all(16.0),

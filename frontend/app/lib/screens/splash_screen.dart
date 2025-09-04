@@ -9,7 +9,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    // 延迟2秒后跳转到登录页
+    // delay 2 seconds and redirect to login page
     Future.delayed(Duration(seconds: 2), () {
       Navigator.pushReplacementNamed(context, '/login');
     });

@@ -150,7 +150,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 SizedBox(height: 10),
                 Text('Development Period: June 2025 – August 2025'),
                 //Text('Supervisor: Dr. John Smith'),
-                Text('Technology Stack: Flutter, FastAPI, GPT-3.5, PostgreSQL'),
+                Text('Technology Stack: Flutter, FastAPI, ollama+llama, PostgreSQL'),
               ],
             ),
           ),
@@ -175,7 +175,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: ListView(
         padding: EdgeInsets.all(16.0),
         children: [
-          // 用户信息卡片
+          // user info card
           Card(
             child: Padding(
               padding: EdgeInsets.all(16.0),
@@ -209,7 +209,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           SizedBox(height: 20),
-          // 设置选项
+          // settings
           Card(
             child: Column(
               children: [
@@ -253,7 +253,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
           SizedBox(height: 20),
-          // 退出登录按钮
+          // logout button
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -278,7 +278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         ElevatedButton(
                           child: Text('Confirm'),
                           onPressed: () {
-                            // TODO: 清除登录状态
+                            // TODO: clear login status
                             Navigator.of(context).pop();
                             Navigator.pushReplacementNamed(context, '/login');
                           },

@@ -21,18 +21,18 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    // 正确订阅
+    // subscribe
     routeObserver.subscribe(this, ModalRoute.of(context)!);
   }
 
   @override
   void dispose() {
-    // 正确取消订阅
+    // unsubscribe
     routeObserver.unsubscribe(this);
     super.dispose();
   }
 
-  // 当从其它页面pop回到Home时会调用
+  // call when pop from other page
   @override
   void didPopNext() {
     _loadSummary();
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                         ),
                       ),
                       SizedBox(height: 20),
-                      // 快速操作按钮
+                      
                       Row(
                         children: [
                           Expanded(
@@ -116,7 +116,7 @@ class _HomeScreenState extends State<HomeScreen> with RouteAware {
                               onPressed: () async {
                                 final result = await Navigator.pushNamed(context, '/add_meal');
                                 if (result == true) {
-                                  _loadSummary(); // 自动刷新
+                                  _loadSummary(); 
                                 }
                               },
                               style: ElevatedButton.styleFrom(

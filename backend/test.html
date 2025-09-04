@@ -15,14 +15,14 @@
 </head>
 <body>
     <div class="container">
-        <h1>NutriCoach API 测试</h1>
+        <h1>NutriCoach API test</h1>
         
         <div>
-            <label for="description">食物描述：</label>
-            <textarea id="description" placeholder="例如：一个苹果和一杯牛奶">一个苹果和一杯牛奶</textarea>
+            <label for="description">food description:</label>
+            <textarea id="description" placeholder="e.g. had a chicken sandwich for lunch today">had a chicken sandwich for lunch today</textarea>
         </div>
         
-        <button onclick="analyzeFood()">分析营养</button>
+        <button onclick="analyzeFood()">analyze food</button>
         
         <div id="result" class="result" style="display: none;"></div>
     </div>
@@ -33,7 +33,7 @@
             const resultDiv = document.getElementById('result');
             
             if (!description.trim()) {
-                alert('请输入食物描述');
+                alert('please input food description');
                 return;
             }
             
@@ -51,25 +51,25 @@
                 if (response.ok) {
                     resultDiv.className = 'result success';
                     resultDiv.innerHTML = `
-                        <h3>营养分析结果：</h3>
-                        <p><strong>热量：</strong>${data.calories} 千卡</p>
-                        <p><strong>蛋白质：</strong>${data.protein} 克</p>
-                        <p><strong>脂肪：</strong>${data.fat} 克</p>
-                        <p><strong>碳水化合物：</strong>${data.carbs} 克</p>
-                        <p><strong>膳食纤维：</strong>${data.fiber} 克</p>
-                        <p><strong>钠：</strong>${data.sodium} 毫克</p>
-                        <h4>详细信息：</h4>
+                        <h3>nutrition analysis result:</h3>
+                        <p><strong>calories:</strong>${data.calories} kcal</p>
+                        <p><strong>protein:</strong>${data.protein} g</p>
+                        <p><strong>fat:</strong>${data.fat} g</p>
+                        <p><strong>carbs:</strong>${data.carbs} g</p>
+                        <p><strong>fiber:</strong>${data.fiber} g</p>
+                        <p><strong>sodium:</strong>${data.sodium} mg</p>
+                        <h4>detailed information:</h4>
                         <pre>${JSON.stringify(data.details, null, 2)}</pre>
                     `;
                 } else {
                     resultDiv.className = 'result error';
-                    resultDiv.innerHTML = `<h3>错误：</h3><p>${data.detail}</p>`;
+                    resultDiv.innerHTML = `<h3>error:</h3><p>${data.detail}</p>`;
                 }
                 
                 resultDiv.style.display = 'block';
             } catch (error) {
                 resultDiv.className = 'result error';
-                resultDiv.innerHTML = `<h3>连接错误：</h3><p>${error.message}</p>`;
+                resultDiv.innerHTML = `<h3>connection error:</h3><p>${error.message}</p>`;
                 resultDiv.style.display = 'block';
             }
         }
