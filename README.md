@@ -132,6 +132,6 @@ This work contributes to research in:
 
 ---
 
-**Development Period**: July 2024 - August 2024  
+**Development Period**: July 2025 - August 2025  
 **Technology Stack**: Flutter, FastAPI, OpenAI API, SQLite, Ollama  
 **Research Focus**: Natural Language Processing, AI-Powered Health Applications 
